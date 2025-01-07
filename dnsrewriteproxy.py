@@ -18,7 +18,7 @@ import socket
 from aiodnsresolver import (
     RESPONSE,
     TYPES,
-    DnsNoAnswer,
+    DnsNoMatchingAnswers,
     DnsRecordDoesNotExist,
     DnsResponseCode,
     Message,
@@ -171,7 +171,7 @@ def DnsProxy(
             ip_addresses = await resolve(
                 rewritten_name_str, TYPES.A,
                 get_logger_adapter=get_resolver_logger_adapter(request_logger))
-        except DnsNoAnswer:
+        except DnsNoMatchingAnswers:
             request_logger.info('No answer')
             return error(query, ERRORS.NOERROR)
         except DnsRecordDoesNotExist:
