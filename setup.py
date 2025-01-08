@@ -25,7 +25,7 @@ setuptools.setup(
         'dnsrewriteproxy',
     ],
     install_requires=[
-        'aiodnsresolver>=0.0.149',
+        'aiodnsresolver>=0.0.157',
     ],
     test_suite='test',
 )
