@@ -68,7 +68,6 @@ def DnsProxy(
 ):
 
     class ERRORS(IntEnum):
-        NOERROR = 0
         FORMERR = 1
         SERVFAIL = 2
         NXDOMAIN = 3
@@ -172,8 +171,8 @@ def DnsProxy(
                 rewritten_name_str, TYPES.A,
                 get_logger_adapter=get_resolver_logger_adapter(request_logger))
         except DnsNoMatchingAnswers:
-            request_logger.info('No answer')
-            return error(query, ERRORS.NOERROR)
+            request_logger.info('No matching answers')
+            ip_addresses = ()
         except DnsRecordDoesNotExist:
             request_logger.info('Does not exist')
             return error(query, ERRORS.NXDOMAIN)
